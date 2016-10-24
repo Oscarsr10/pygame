@@ -16,6 +16,11 @@ car_width = 73
 clock = pygame.time.Clock() 
 carImg = pygame.image.load('racecar.png')
 
+def things_dodged(count):
+    font = pygame.font.SysFont(None, 25)
+    text = font.render("Dodged: "+str(count), True, black)
+    screen.blit(text,(0,0))
+
 def things(thingx, thingy, thingw, thingh, color):
     pygame.draw.rect(screen, color, [thingx, thingy, thingw, thingh])
 
@@ -54,6 +59,10 @@ def game_loop():
     thing_width = 100
     thing_height = 100
     
+    thingCount = 1
+
+    dodged = 0
+    
     gameExit = False
    
     while not gameExit:
@@ -75,6 +84,7 @@ def game_loop():
         things(thing_startx, thing_starty, thing_width, thing_height, black)
         thing_starty += thing_speed
         car(x,y)
+        things_dodged(dodged)
     
         if x > 800 - car_width or x < 0:
             crash()
@@ -82,6 +92,9 @@ def game_loop():
         if thing_starty > 600:
             thing_starty = 0 - thing_height
             thing_startx = random.randrange(0,800) 
+            dodged += 1
+            thing_speed += 1
+            thing_width += (dodged * 1.0)
         
         if y < thing_starty+thing_height:
             print('y crossover')
