@@ -22,7 +22,7 @@ car_width = 73
 clock = pygame.time.Clock() 
 carImg = pygame.image.load('racecar.png')
 pygame.mixer.music.load('sound.mp3')
-pygame.mixer.music.play(0)
+pygame.mixer.music.play(-1)
 
 
 def things_dodged(count):
