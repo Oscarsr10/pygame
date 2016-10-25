@@ -14,12 +14,15 @@ black = (0,0,0)
 white = (255,255,255)
 red = (200,0,0)
 green = (0,128,0)
+cyan = (0,255,255)
 bright_red = (255,0,0)
 bright_green = (0,255,0)
 
 car_width = 73
 clock = pygame.time.Clock() 
 carImg = pygame.image.load('racecar.png')
+pygame.mixer.music.load('sound.mp3')
+pygame.mixer.music.play(0)
 
 
 def things_dodged(count):
@@ -65,7 +68,7 @@ def game_intro():
                 pygame.quit()
                 quit()
                 
-        screen.fill(white)
+        screen.fill(cyan)
         largeText = pygame.font.SysFont('comicsansms',115)
         TextSurf, TextRect = text_objects("Race Dodge", largeText)
         TextRect.center = ((800/2),(600/2))
@@ -140,7 +143,7 @@ def game_loop():
                 if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
                     x_change = 0
         x += x_change
-        screen.fill(white)
+        screen.fill(cyan)
         
         things(thing_startx, thing_starty, thing_width, thing_height, black)
         thing_starty += thing_speed
